@@ -8,7 +8,7 @@ import time
 
 class myRobot:
   # Initialize the Class 
-  def __init__(self, motorL=None, motorR=None, motorM=None, gyroPort=None, colorL=None, colorR=None, colorM=None):
+  def __init__(self, motorL=None, motorR=None, motorM=None, gyroPort=None, colorL=None, colorR=None, colorM=None, debug=False):
     if motorL: self.motorL = LargeMotor(motorL)
     if motorR: self.motorR = LargeMotor(motorR)
     if motorM: self.motorM = Motor(motorM)
@@ -23,7 +23,7 @@ class myRobot:
     if motorL and motorR: 
       self.drive = MoveSteering(motorL, motorR)
       self.move = MoveTank(motorL, motorR)
-    print("Successful initialization!")
+    if debug: print("Successful initialization!")
 
   # Function to go forward, by default it uses the gyro for correcting, but it can be disabled.
   # Can use either rotations to measure distance, or time
@@ -67,7 +67,7 @@ class myRobot:
     self.gyro.mode = 'GYRO-CAL'
     time.sleep(t)
     self.gyro.mode = 'GYRO-ANG'
-
+  
 
 if __name__ == "__main__":
   k = myRobot()
